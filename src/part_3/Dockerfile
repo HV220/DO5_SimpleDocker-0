@@ -9,7 +9,7 @@ RUN apt-get update && \
 WORKDIR /home
 
 COPY part_3.c /home/
-COPY default.conf ../etc/nginx/conf.d/default.conf
+COPY script.sh /home/
+COPY nginx/default.conf ../etc/nginx/conf.d/default.conf
 RUN [ "systemctl","restart", "nginx"]
 RUN [ "gcc", "part_3.c", "-o", "part_3.fcgi", "-lfcgi"]
-# spawn-fcgi -p 8080 -n part_3.fcgi - input command into created contaiter
